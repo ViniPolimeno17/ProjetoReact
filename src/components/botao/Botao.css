@@ -1,5 +1,7 @@
 .botao{
-    padding: 10px 100px;
+    /* padding: 5px 100px; */
+    width: 200px;
+    height: 30px;
     border: none;
     cursor: pointer;
     background-color: #73061b;

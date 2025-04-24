@@ -16,7 +16,7 @@ const Login = () => {
                     <div className="campo_input">
                         <label htmlFor="email">Email:</label>
                         <input type="email" name="email" placeholder="Digite seu e-mail"/>
-                    </div>
+                    </div> 
                     <div className="campo_input">
                         <label htmlFor="senha">Senha:</label>
                         <input type="password" name="senha" placeholder="Digite sua senha"/>
