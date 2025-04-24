@@ -1,0 +1,55 @@
+.listagem{
+    /* vamos retirar: 
+        header: 75px
+        cadastro: 252px
+        footer: 40px */
+    min-height: calc(100vh - (75px + 252px + 40px));
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+}
+
+.listagem h1{
+    text-transform: uppercase;
+}
+
+.listagem hr{
+    max-width: 300px;
+    width: 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #73061b;
+    margin-top: 5px;
+}
+
+.item_lista img{
+    height: 28px;
+}
+
+.tabela{
+    width: 100%;
+    margin-top: 30px;
+}
+
+.tabela table{
+    width: 100%;
+}
+
+.tabela .cabecalho :first-child{
+    width: 300px;
+}
+
+.tabela .cabecalho :nth-child(2){
+    width: 200px;
+}
+
+.tabela .cabecalho th{
+    width: 100px;
+}
+
+.tabela_lista td{
+    /* desgrudar o item do titulo */
+    padding: 20px 0 5px 0;
+}

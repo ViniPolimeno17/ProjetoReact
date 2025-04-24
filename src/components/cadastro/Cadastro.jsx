@@ -11,7 +11,7 @@ const Cadastro = () => {
                 <div className="campos_cadastro">
                     <div className="campo_cad_nome">
                         <label htmlFor="Nome">Nome</label>
-                        <input type="text" name="Nome" placeholder="Digite seu Nome"/>
+                        <input type="text" name="Nome" placeholder="Digite o nome do Filme"/>
                     </div>
                     <div className="campo_cad_genero">
                         <label htmlFor="Genero">Gênero</label>
