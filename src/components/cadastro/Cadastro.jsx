@@ -5,15 +5,15 @@ import Botao from "../botao/Botao";
 const Cadastro = (props) => {
     return(
         <section className="section_cadastro">
-            <form action="" className="layout_grid  form_cadastro" >
-                <h1>{props.tituloCadastro}</h1>
+            <form onSubmit={props.funcCadastro} className="layout_grid  form_cadastro" >
+                 <h1>{props.tituloCadastro}</h1>
                 <hr /> 
                 <div className="campos_cadastro">
                     <div className="campo_cad_nome">
                         <label htmlFor="Nome">Nome</label>
-                        <input type="text" name="Nome" placeholder={`Digite o nome do ${props.placeholder}`}/>
+                        <input type="text" name="Nome" placeholder={`Digite o nome do ${props.placeholder}`} value={props.valorInput} onChange={(e) => props.setValorInput(e.target.value)}/>
                     </div>
-                    <div className="campo_cad_genero" style={{display:props.visibilidade}}>
+                  <div className="campo_cad_genero" style={{display:props.visibilidade}}>
                         <label htmlFor="Genero">Gênero</label>
                         <select name="genero" id="">
                             <option value="" disabled selected>Selecione</option> {/* Serve para a opção já vim selecionada */}

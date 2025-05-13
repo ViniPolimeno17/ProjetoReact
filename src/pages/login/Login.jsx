@@ -7,7 +7,7 @@ import Botao from "../../components/botao/Botao";
 const Login = () => {
     return(
         <main className= "main_login">
-           <div className="banner"></div>
+           <div className=" banner"></div>
            <section className="section_login">
             <img src={Logo} alt="Logo do Filmoteca" />
             <form action="" className="form_login">
