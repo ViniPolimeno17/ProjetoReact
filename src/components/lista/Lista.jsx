@@ -5,7 +5,7 @@ import "./Lista.css";
 const Lista = (props) => {
     return(
         <section className="layout_grid listagem">
-            <h1>{`Lista de ${props.Lista}`}</h1>
+            <h1>{`Lista de ${props.nomeLista}`}</h1>
             <hr/>
             <div className="tabela">
                 <table>
@@ -45,7 +45,7 @@ const Lista = (props) => {
                                         /></td>
                                 </tr>
                              ))
-                        ) : (
+                        ): (
                             <p>Nenhum gênero foi encontrado.</p>
                             )
                         }

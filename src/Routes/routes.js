@@ -11,7 +11,7 @@ const Rotas = () => {
                 <Route path="/" element={<Login/>} exact/>
                 {/* https://localhost:3000/Filme => Cadastro de filmes*/}
                 <Route path="/Filme" element={<CadastroFilme/>}/>
-                {/* https://localhost:3000/Filme => Cadastro de filmes*/}
+                {/* https://localhost:3000/Genero => Cadastro de genero*/}
                 <Route path="/Genero" element={<CadastroGenero/>}/>
             </Routes>
         </BrowserRouter>

@@ -44,7 +44,7 @@ const CadastroGenero = () => {
     async function cadastrarGenero(e) {
         e.preventDefault();
         //verificar se o input esta vindo vazio
-        if (genero.trim() != "") {
+        if (genero.trim() !== "") {
 
             try {
                 //cadastrar um gênero: post
@@ -82,7 +82,7 @@ const CadastroGenero = () => {
         listarGenero();
         //ao nascer
         //alterada(excluir, editar um item pu adonar um item)
-    }, [listarGenero]);
+    }, [listaGenero]);
 
 
     //Função de excluir o genero ;)
@@ -116,6 +116,29 @@ const CadastroGenero = () => {
             // Alerta - fim        
     }
 
+    async function editarGenero(genero){
+        const { value: novoGenero } = await Swal.fire({
+        title: "Modifique seu novo gênero",
+        input: "text",
+        inputLabel: "Novo Gênero",
+        inputValue: genero.nome,
+        showCancelButton: true,
+        inputValidator: (value) => {
+            if (!value) {
+            return "Campo nâo pode estar vazio!";
+            }
+        }
+    });
+    if (novoGenero) {
+            try {
+                await api.put(`genero/${genero.idGenero}`, {nome: novoGenero});
+                Swal.fire(`O gênero foi modificado ${novoGenero}`);
+                listaGenero();
+            } catch (error) {
+                console.log(error);
+            }
+}
+    }
     //teste: validar o genero
     // useEffect(<function>, <depedency>)
     // useEffect(() => {
@@ -138,8 +161,12 @@ const CadastroGenero = () => {
                     //Atribuindo a função que atualiza o meu genero
                     setValorInput={setGenero}
                 />
-                <Lista Lista="Gênero" visible="none" lista={listaGenero} funcExcluir={excluirGenero} />
-
+                <Lista 
+                nomeLista="Gênero" 
+                visible="none" 
+                lista={listaGenero} 
+                funcExcluir={excluirGenero} 
+                funcEditar={editarGenero}/>
             </main>
             <Footer />
         </>
