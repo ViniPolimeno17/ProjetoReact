@@ -13,11 +13,13 @@ import './CadastroGenero.css';
 
 const CadastroGenero = () => {
 
-    //nome do genero
+    //Só criamos useState quanod guardar uma informação que muda e que o React precisa acompanhar.
+    // Quem eu vou manipular?
     const [genero, setGenero] = useState("");
     const [listaGenero, setListaGenero] = useState([]);
+    // const [excluirGenero, setExcluirGenero] = useState("");
 
-    function alerta(icone, mensagem) {
+    function alertar(icone, mensagem) {
         const Toast = Swal.mixin({
             toast: true,
             position: "top-end",
@@ -47,13 +49,15 @@ const CadastroGenero = () => {
             try {
                 //cadastrar um gênero: post
                 await api.post("genero", { nome: genero });
-                alerta("success", "Cadastro realizando com sucesso!")
+                alertar("success", "Cadastro realizando com sucesso!");
                 setGenero("");
+                //atualize minha lista assim que cadastrar um novo genero
+                listarGenero();
             } catch (error) {
-                alerta("error", "Erro, entre em contato com o suporte!")
+                alertar("error", "Erro, entre em contato com o suporte!")
             }
         } else {
-            alerta("error", "Erro! Preencha o campo")
+            alertar("error", "Erro! Preencha o campo")
         }
 
 
@@ -75,39 +79,42 @@ const CadastroGenero = () => {
 
     // Assim que a página renderizar, o metodo listarGenero()será chamado
     useEffect(() => {
-        listarGenero()
-    }, [listarGenero])
+        listarGenero();
+        //ao nascer
+        //alterada(excluir, editar um item pu adonar um item)
+    }, [listarGenero]);
 
 
     //Função de excluir o genero ;)
     async function excluirGenero(generoId) {
-
-        // Alerta - começo
-        Swal.fire({
-            title: "Você tem certeza?",
-            text: "Você não vai conseguir reverter isso!",
-            icon: "Perigo",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Sim, quero deletar!"
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-
-                await api.delete(`genero/${generoId.idGenero}`)
-
-                Swal.fire({
-                    title: "Deletado!",
-                    text: "seu arquivo foi apagado com sucesso!",
-                    icon: "success"
-                });
-            }
-        });
-        // Alerta - fim 
+        
+            Swal.fire({
+                title: "Você tem certeza?",
+                text: "Você não vai conseguir reverter isso!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sim, quero deletar!"
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    try {
+                        await api.delete(`genero/${generoId.idGenero}`);
+                        alertar("success", "Gênero excluido com sucesso!");
+                        listaGenero();
+                        
+                    } catch (error) {
+                        console.log(error);                  
+                    }
+                    // Swal.fire({
+                    //     title: "Deletado!",
+                    //     text: "seu arquivo foi apagado com sucesso!",
+                    //     icon: "success"
+                    // });
+                }
+            });
+            // Alerta - fim        
     }
-
-    
-
 
     //teste: validar o genero
     // useEffect(<function>, <depedency>)
@@ -115,9 +122,6 @@ const CadastroGenero = () => {
     //     console.log(genero);        
     // },[genero]);
     // fim do teste
-
-
-
 
     return (
         <>
